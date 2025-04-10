@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#Load" text="Open" />
+                  <MenuItem mnemonicParsing="false" onAction="#SaveAs" text="Save As" />
+                  <MenuItem mnemonicParsing="false" onAction="#About" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <HBox prefHeight="836.0" prefWidth="665.0">
+         <children>
+            <Pane prefHeight="719.0" prefWidth="55.0" />
+            <VBox prefHeight="805.0" prefWidth="276.0">
+               <children>
+                  <HBox prefHeight="39.0" prefWidth="182.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#createNewClient" prefHeight="25.0" prefWidth="127.0" text="Create new client" wrapText="true">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <TextField fx:id="newClientName" prefHeight="25.0" prefWidth="130.0" promptText="Ex: John Doe" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#printAllClients" prefHeight="25.0" prefWidth="256.0" text="Print All existing clients">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#compareClientsByHeight" prefHeight="25.0" prefWidth="256.0" text="Compare all clients by height">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <HBox prefHeight="38.0" prefWidth="182.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#printExistingClient" text="Select existing client" wrapText="true" />
+                        <TextField fx:id="existingClientName" prefHeight="25.0" prefWidth="127.0" promptText="Ex: John Doe" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label fx:id="addNewEntryLabel" text="Add new entry for selected client">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox fx:id="addNewEntryPane" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="addWeight" mnemonicParsing="false" onAction="#addWeight" prefHeight="25.0" prefWidth="250.0" text="Weight" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="addBicepsSize" mnemonicParsing="false" onAction="#addBicepsSize" prefWidth="250.0" text="Biceps size" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="addWaistSize" mnemonicParsing="false" onAction="#addWaistSize" prefWidth="250.0" text="Waist size" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="chestSize" mnemonicParsing="false" onAction="#addChestSize" prefWidth="250.0" text="Chest size" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefWidth="250.0" text="Calorie intake" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <Label fx:id="printPastEntryLabel" text="Print past entry for selected client" />
+                  <VBox fx:id="printPastEntriesPane" prefHeight="210.0" prefWidth="403.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="printWeight" mnemonicParsing="false" onAction="#printWeight" prefHeight="25.0" prefWidth="250.0" text="Weight" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="printBiceps" mnemonicParsing="false" onAction="#printBiceps" prefWidth="250.0" text="Biceps size" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="printWaist" mnemonicParsing="false" onAction="#printWaist" prefWidth="250.0" text="Waist size" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="printChest" mnemonicParsing="false" onAction="#printChest" prefWidth="250.0" text="Chest size" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="printCalIntake" mnemonicParsing="false" onAction="#printCalIntake" prefWidth="250.0" text="Calorie intake" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <Label fx:id="functionsLabel" text="Functions" />
+                  <VBox fx:id="functionsPane" prefHeight="161.0" prefWidth="259.0">
+                     <children>
+                        <Button fx:id="printWeightTrend" mnemonicParsing="false" onAction="#printWeightTrend" prefWidth="250.0" text="Weight trend" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="printBMITrend" mnemonicParsing="false" onAction="#printBMITrend" prefWidth="250.0" text="BMI trend" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="printWeeklyCalIntake" mnemonicParsing="false" onAction="#printWeeklyCalIntake" prefWidth="250.0" text="Weekly calorie intake" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Pane prefHeight="748.0" prefWidth="58.0" />
+            <TextArea fx:id="clientInfoPane" editable="false" prefHeight="772.0" prefWidth="245.0" promptText="Client data panel" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </HBox.margin>
+            </TextArea>
+            <Pane prefHeight="748.0" prefWidth="57.0" />
+         </children>
+      </HBox>
+      <Label fx:id="statusMessage" alignment="CENTER" text="Label">
+         <VBox.margin>
+            <Insets bottom="20.0" left="55.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
+   </children>
+</VBox>
