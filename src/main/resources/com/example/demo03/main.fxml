@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo03.MainController">
    <children>
       <MenuBar>
         <menus>
@@ -36,14 +36,23 @@
             <Pane prefHeight="719.0" prefWidth="55.0" />
             <VBox prefHeight="805.0" prefWidth="276.0">
                <children>
-                  <HBox prefHeight="39.0" prefWidth="182.0">
+                  <HBox prefHeight="30.0" prefWidth="276.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#createNewClient" prefHeight="25.0" prefWidth="127.0" text="Create new client" wrapText="true">
+                        <Button fx:id="addNewClientButton" mnemonicParsing="false" onAction="#addNewClient" prefHeight="25.0" prefWidth="104.0" text="Add new client" wrapText="true">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <TextField fx:id="newClientName" prefHeight="25.0" prefWidth="130.0" promptText="Ex: John Doe" />
+                        <TextField fx:id="newClientName" prefHeight="25.0" prefWidth="87.0" promptText="Ex: John Doe">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="newClientHeight" prefHeight="25.0" prefWidth="64.0" promptText="ex: 180 cm">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </TextField>
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -61,45 +70,61 @@
                   </Button>
                   <HBox prefHeight="38.0" prefWidth="182.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#printExistingClient" text="Select existing client" wrapText="true" />
-                        <TextField fx:id="existingClientName" prefHeight="25.0" prefWidth="127.0" promptText="Ex: John Doe" />
+                        <Button fx:id="selectExistingClient" mnemonicParsing="false" onAction="#selectExistingClient" text="Select existing client" wrapText="true" />
+                        <TextField fx:id="existingClientName" prefHeight="25.0" prefWidth="125.0" promptText="Ex: John Doe" />
                      </children>
                      <VBox.margin>
-                        <Insets top="25.0" />
+                        <Insets bottom="15.0" top="50.0" />
                      </VBox.margin>
                   </HBox>
                   <Label fx:id="addNewEntryLabel" text="Add new entry for selected client">
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <VBox fx:id="addNewEntryPane" prefHeight="200.0" prefWidth="100.0">
+                  <Label fx:id="selectedCliantNameDisplay" text="Label">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox fx:id="addNewEntryPane" prefHeight="336.0" prefWidth="276.0">
                      <children>
-                        <Button fx:id="addWeight" mnemonicParsing="false" onAction="#addWeight" prefHeight="25.0" prefWidth="250.0" text="Weight" wrapText="true">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="addBicepsSize" mnemonicParsing="false" onAction="#addBicepsSize" prefWidth="250.0" text="Biceps size" wrapText="true">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="addWaistSize" mnemonicParsing="false" onAction="#addWaistSize" prefWidth="250.0" text="Waist size" wrapText="true">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="chestSize" mnemonicParsing="false" onAction="#addChestSize" prefWidth="250.0" text="Chest size" wrapText="true">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" text="Calorie intake" wrapText="true">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="date" mnemonicParsing="false" onAction="#assignDate" prefHeight="25.0" prefWidth="100.0" text="Date" wrapText="true" />
+                              <TextField fx:id="dateInput" prefHeight="25.0" prefWidth="152.0" promptText="DD/MM/YYY" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="addWeight" mnemonicParsing="false" onAction="#addWeight" prefHeight="25.0" prefWidth="100.0" text="Weight" wrapText="true" />
+                              <TextField fx:id="weightInput" prefHeight="25.0" prefWidth="152.0" promptText="kg." />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="addBicepsSize" mnemonicParsing="false" onAction="#addBicepsSize" prefWidth="100.0" text="Biceps size" wrapText="true" />
+                              <TextField fx:id="bicepSizeInput" prefHeight="25.0" prefWidth="152.0" promptText="cm" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="addWaistSize" mnemonicParsing="false" onAction="#addWaistSize" prefWidth="100.0" text="Waist size" wrapText="true" />
+                              <TextField fx:id="waistSizeInput" prefHeight="25.0" prefWidth="152.0" promptText="cm" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="chestSize" mnemonicParsing="false" onAction="#addChestSize" prefWidth="100.0" text="Chest size" wrapText="true" />
+                              <TextField fx:id="chestSizeInput" prefHeight="25.0" prefWidth="152.0" promptText="cm" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefWidth="100.0" text="Calorie intake" wrapText="true" />
+                              <TextField fx:id="calIntakeInput" prefHeight="25.0" prefWidth="152.0" />
+                           </children>
+                        </HBox>
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" />
@@ -161,7 +186,7 @@
                </children>
             </VBox>
             <Pane prefHeight="748.0" prefWidth="58.0" />
-            <TextArea fx:id="clientInfoPane" editable="false" prefHeight="772.0" prefWidth="245.0" promptText="Client data panel" wrapText="true">
+            <TextArea fx:id="clientInfoPane" editable="false" prefHeight="722.0" prefWidth="245.0" promptText="Client data panel" wrapText="true">
                <HBox.margin>
                   <Insets bottom="20.0" top="20.0" />
                </HBox.margin>
@@ -169,7 +194,7 @@
             <Pane prefHeight="748.0" prefWidth="57.0" />
          </children>
       </HBox>
-      <Label fx:id="statusMessage" alignment="CENTER" text="Label">
+      <Label fx:id="statusMessage" alignment="CENTER" text="Label" textFill="RED">
          <VBox.margin>
             <Insets bottom="20.0" left="55.0" right="20.0" top="20.0" />
          </VBox.margin>

@@ -40,8 +40,13 @@ public class DataBase {
 
     /**
      * Compares client by height and prints them out
+     *
+     * @return
      */
-    public static void sortClientsByHeight() {
+    public static String sortClientsByHeight() {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
         System.out.println("Clients listed from tallest to shortest:");
 
         // Get list of client's heights and sort
@@ -52,20 +57,20 @@ public class DataBase {
         for (Client c: clients) {
            String clientName = c.getName();
            int clientHeight = c.getHeight();
-           System.out.println("Client: " + clientName + " | " + clientHeight);
+           stringBuilder.append("Client: ").append(clientName).append(" | ").append(clientHeight).append("\n");
         }
+
+        return stringBuilder.toString();
     }
 
     /**
      * Prints a list with all the client names
      * clientList: a HashMap containing all the clients (keys) and all their respective data set
      */
-    public static void printAllClientNames() {
-
-        StringBuilder stringBuilder = new StringBuilder();
+    public static String printAllClientNames() {
 
         // print the keys (client names) in the client list
-        System.out.println(clientList.keySet());
+        return String.valueOf(clientList.keySet());
     }
 
     /**
