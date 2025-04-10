@@ -3,18 +3,13 @@ package com.example.demo03;
 import com.example.demo03.enums.MeasurementEnum;
 import com.example.demo03.tracker.Client;
 import com.example.demo03.util.DataBase;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,16 +28,12 @@ public class MainController {
     private Client selectedClient;
     private LocalDate date;
 
+    /**
+     * initializes variables
+     */
     @FXML
     public void Initialize() {
         statusMessage.setText("Create new client or select existing client to see data");
-
-        // initializing the buttons
-        addNewClientButton = new Button();
-        addBicepsSize = new Button();
-        addWeight = new Button();
-        addWaistSize = new Button();
-        selectExistingClient = new Button();
 
     }
 
@@ -76,7 +67,6 @@ public class MainController {
     @FXML
     private Label selectedClientNameDisplay;
 
-
     @FXML
     private VBox addNewEntryPane;
 
@@ -99,12 +89,6 @@ public class MainController {
     private TextField existingClientName;
 
     @FXML
-    private Label functionsLabel;
-
-    @FXML
-    private VBox functionsPane;
-
-    @FXML
     private TextField newClientName;
 
     @FXML
@@ -121,12 +105,6 @@ public class MainController {
 
     @FXML
     private Button printChest;
-
-    @FXML
-    private VBox printPastEntriesPane;
-
-    @FXML
-    private Label printPastEntryLabel;
 
     @FXML
     private Button printWaist;
@@ -173,13 +151,20 @@ public class MainController {
 
     }
 
+
+    /**
+     * Adds a weight entry to the selected client's data
+     * @param event
+     */
     @FXML
     void addWeight(ActionEvent event) {
 
         float entry;
 
+        // checking user input
         try {
             entry = Float.parseFloat(weightInput.getText());
+            //add the entry to the clients weight data
             selectedClient.getMeasurement(MeasurementEnum.getEnumAt(WEIGHT)).addEntry(date, entry);
             weightInput.clear();
 
@@ -195,6 +180,10 @@ public class MainController {
 
     }
 
+    /**
+     * adds a new client to the database
+     * @param event
+     */
     @FXML
     void addNewClient(ActionEvent event) {
 
@@ -240,6 +229,11 @@ public class MainController {
 
     }
 
+    /**
+     * assigns a value to the data variable, to be associated with future
+     * entries until user provides a new date
+     * @param event
+     */
     @FXML
     void assignDate(ActionEvent event) {
 
@@ -251,11 +245,19 @@ public class MainController {
 
         // parse the formatted date into a LocalDate class
         date = LocalDate.parse(dateString, stringToDateFormatter);
+
+        dateInput.clear();
+        statusMessage.setText("Date assigned to future entries.");
     }
 
+    /**
+     * gets the selected client from the database
+     * @param event
+     */
     @FXML
     void selectExistingClient(ActionEvent event) {
         selectedClient = DataBase.getClient(existingClientName.getText());
+        selectedClientNameDisplay.setText("Entering / printing data for " + existingClientName.getText());
         existingClientName.clear();
 
     }
@@ -270,9 +272,13 @@ public class MainController {
 
     }
 
+    /**
+     * prints the user's weight to the info panel
+     * @param event
+     */
     @FXML
     void printWeight(ActionEvent event) {
-        selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WEIGHT));
+        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WEIGHT)));
 
     }
 

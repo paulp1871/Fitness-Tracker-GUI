@@ -71,9 +71,8 @@ public final class Client {
      * Print the measurements of one specific body part/data (weight, biceps, waist, etc.)
      * @param measurementEnum contains measurementEnum representing type of data we want
      */
-    public void printSpecificClientMeasurement(MeasurementEnum measurementEnum) {
-        //TODO: Format output
-        System.out.println(clientMeasurements.get(measurementEnum).toString());
+    public String printSpecificClientMeasurement(MeasurementEnum measurementEnum) {
+        return clientMeasurements.get(measurementEnum).toString();
     }
 
     /**

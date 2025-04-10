@@ -82,7 +82,7 @@
                         <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="selectedCliantNameDisplay" text="Label">
+                  <Label fx:id="selectedClientNameDisplay" text="Label">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -130,8 +130,8 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </VBox>
-                  <Label fx:id="printPastEntryLabel" text="Print past entry for selected client" />
-                  <VBox fx:id="printPastEntriesPane" prefHeight="210.0" prefWidth="403.0">
+                  <Label text="Print past entry for selected client" />
+                  <VBox prefHeight="210.0" prefWidth="403.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -163,8 +163,8 @@
                         </Button>
                      </children>
                   </VBox>
-                  <Label fx:id="functionsLabel" text="Functions" />
-                  <VBox fx:id="functionsPane" prefHeight="161.0" prefWidth="259.0">
+                  <Label text="Functions" />
+                  <VBox prefHeight="161.0" prefWidth="259.0">
                      <children>
                         <Button fx:id="printWeightTrend" mnemonicParsing="false" onAction="#printWeightTrend" prefWidth="250.0" text="Weight trend" wrapText="true">
                            <VBox.margin>
