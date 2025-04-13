@@ -146,9 +146,24 @@ public class MainController {
 
     }
 
+    /**
+     * Adds a waist size entry to the selected client's data
+     * @param event
+     */
     @FXML
     void addWaistSize(ActionEvent event) {
+        float entry;
 
+        // checking user input
+        try {
+            entry = Float.parseFloat(waistSizeInput.getText());
+            //add the entry to the clients waist size data
+            selectedClient.getMeasurement(MeasurementEnum.getEnumAt(WAIST_SIZE)).addEntry(date, entry);
+            statusMessage.setText("Waist size added to database");
+            waistSizeInput.clear();
+        } catch (NumberFormatException e) {
+            statusMessage.setText("Waist size needs to be a number.");
+        }
     }
 
 
@@ -166,8 +181,8 @@ public class MainController {
             entry = Float.parseFloat(weightInput.getText());
             //add the entry to the clients weight data
             selectedClient.getMeasurement(MeasurementEnum.getEnumAt(WEIGHT)).addEntry(date, entry);
+            statusMessage.setText("Weight added to database");
             weightInput.clear();
-
         } catch (NumberFormatException e) {
             statusMessage.setText("Weight needs to be a number.");
         }
