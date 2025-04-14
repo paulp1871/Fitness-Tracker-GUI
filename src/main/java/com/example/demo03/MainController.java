@@ -350,6 +350,14 @@ public class MainController {
             return;
         }
 
+        // Obtain BMI trend info
+        String bmiInfo = selectedClient.getBMIString();
+
+        // Obtain weekly caloric intake info
+        float weeklyCaloricIntake = selectedClient.getMeasurement(MeasurementEnum.CALORIES).calculateTrend();
+
+        clientInfoPane.setText(bmiInfo);
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s BMI trend.");
     }
 
     /** Displays the client's bicep size to the info panel
@@ -520,14 +528,14 @@ public class MainController {
         // Obtain weekly caloric intake info
         float weeklyCaloricIntake = selectedClient.getMeasurement(MeasurementEnum.CALORIES).calculateTrend();
 
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s weekly average calorie intake.");
+
         // Messages to show if data present or empty.
         if (weeklyCaloricIntake == -1) {
             clientInfoPane.setText("Not enough data to calculate average calorie intake for this week.");
-            statusMessage.setText("No calorie data available for " + selectedClient.getName());
         } else {
             clientInfoPane.setText("Average calorie intake for " + selectedClient.getName() +
                     " this week was " + weeklyCaloricIntake + " calories.");
-            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s weekly average calorie intake.");
         }
     }
 
@@ -572,13 +580,13 @@ public class MainController {
         // Obtain weight trend info
         float weightTrendInfo = selectedClient.getMeasurement(MeasurementEnum.WEIGHT).calculateTrend();
 
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s predicted weight in a month.");
+
         // Messages to show if data present or empty.
         if (weightTrendInfo == -1) {
             clientInfoPane.setText("Not enough data to calculate predicted weight in a month.");
-            statusMessage.setText("No weight data available for " + selectedClient.getName());
         } else {
             clientInfoPane.setText(selectedClient.getName() + "'s predicted weight in a month is " + weightTrendInfo + " kg.");
-            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s predicted weight in a month.");
         }
 
     }
