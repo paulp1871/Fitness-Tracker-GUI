@@ -557,7 +557,7 @@ public class MainController {
         }
     }
 
-    /** Displays the client's predicted weight trend
+    /** Displays the client's predicted weight trend in am month
      *
      * @param event Button click
      */
@@ -568,6 +568,19 @@ public class MainController {
             statusMessage.setText("No client selected. Please select a client first.");
             return;
         }
+
+        // Obtain weight trend info
+        float weightTrendInfo = selectedClient.getMeasurement(MeasurementEnum.WEIGHT).calculateTrend();
+
+        // Messages to show if data present or empty.
+        if (weightTrendInfo == -1) {
+            clientInfoPane.setText("Not enough data to calculate predicted weight in a month.");
+            statusMessage.setText("No weight data available for " + selectedClient.getName());
+        } else {
+            clientInfoPane.setText(selectedClient.getName() + "'s predicted weight in a month is " + weightTrendInfo + " kg.");
+            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s predicted weight in a month.");
+        }
+
     }
 
 }
