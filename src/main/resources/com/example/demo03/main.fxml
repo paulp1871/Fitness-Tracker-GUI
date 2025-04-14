@@ -43,12 +43,12 @@
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <TextField fx:id="newClientName" prefHeight="25.0" prefWidth="87.0" promptText="Ex: John Doe">
+                        <TextField fx:id="newClientName" prefHeight="25.0" prefWidth="87.0" promptText="Name">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="newClientHeight" prefHeight="25.0" prefWidth="64.0" promptText="ex (cm): 180">
+                        <TextField fx:id="newClientHeight" prefHeight="25.0" prefWidth="64.0" promptText="Height (cm)">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -82,7 +82,7 @@
                         <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="selectedClientNameDisplay" text="Label">
+                  <Label fx:id="selectedClientNameDisplay" text="No client currently selected">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

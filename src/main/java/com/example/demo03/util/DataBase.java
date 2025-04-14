@@ -47,7 +47,7 @@ public class DataBase {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        System.out.println("Clients listed from tallest to shortest:");
+        stringBuilder.append("Clients listed from tallest to shortest:").append("\n");
 
         // Get list of client's heights and sort
         List<Client> clients = new ArrayList<>(clientList.values());

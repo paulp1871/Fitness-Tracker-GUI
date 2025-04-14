@@ -142,6 +142,12 @@ public class MainController {
      */
     @FXML
     void addBicepsSize(ActionEvent event) {
+        // Check if client selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
         float entry;
 
         // checking user input
@@ -162,6 +168,12 @@ public class MainController {
      */
     @FXML
     void addChestSize(ActionEvent event) {
+        // Check if client selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
         float entry;
 
         // checking user input
@@ -182,6 +194,12 @@ public class MainController {
      */
     @FXML
     void addWaistSize(ActionEvent event) {
+        // Check if client selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
         float entry;
 
         // checking user input
@@ -203,6 +221,11 @@ public class MainController {
      */
     @FXML
     void addWeight(ActionEvent event) {
+        // Check if client selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
 
         float entry;
 
@@ -219,10 +242,19 @@ public class MainController {
 
     }
 
+    /** Compares all clients in database by height
+     *
+     * @param event Button click
+     */
     @FXML
     void compareClientsByHeight(ActionEvent event) {
         clientInfoPane.setText(DataBase.sortClientsByHeight());
 
+        if (DataBase.sortClientsByHeight().equals("Clients listed from tallest to shortest:\n")) {
+            statusMessage.setText("No clients in database currently.");
+        } else {
+            statusMessage.setText("Clients sorted by height.");
+        }
     }
 
     /**
@@ -232,9 +264,11 @@ public class MainController {
     @FXML
     void addNewClient(ActionEvent event) {
 
+        // Get client name and height
         String name = newClientName.getText();
         int height;
 
+        // Add client to database and display
         try {
             height = Integer.parseInt(newClientHeight.getText());
             DataBase.addClient(name, height);
@@ -254,47 +288,108 @@ public class MainController {
      */
     @FXML
     void printAllClients(ActionEvent event) {
+        // Show all clients
         clientInfoPane.setText(DataBase.printAllClientNames());
 
+        // Check if there are any clients to show status msg
+        if (DataBase.printAllClientNames().equals("[]")) {
+            statusMessage.setText("No clients in database currently.");
+        }
     }
 
+    /** Displays the selected client's BMI prediction in the into panel
+     *
+     * @param event Button click
+     */
     @FXML
     void printBMITrend(ActionEvent event) {
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
 
     }
 
-    /**
-     * prints the user's bicep size to the info panel
+    /** Displays the client's bicep size to the info panel
+     *
      * @param event Button click
      */
     @FXML
     void printBiceps(ActionEvent event) {
-        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(BICEP_SIZE)));
-        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s bicep size data.");
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
+        // Obtain bicep trend info
+        String bicepInfo = selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(BICEP_SIZE));
+
+        // Display
+        clientInfoPane.setText(bicepInfo);
+
+        // Messages to show if data present or empty
+        if (bicepInfo != null  && !bicepInfo.trim().isEmpty()) {
+            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s bicep size data.");
+        } else {
+            statusMessage.setText("No data found for " + selectedClient.getName() + "'s bicep size.");
+        }
     }
 
+    /** Displays the client's caloric intake data
+     *
+     * @param event Button click
+     */
     @FXML
     void printCalIntake(ActionEvent event) {
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
 
     }
 
-    /**
-     * prints the user's chest size to the info panel
+    /** Displays the client's chest size to the info panel
+     *
      * @param event Button click
      */
     @FXML
     void printChest(ActionEvent event) {
-        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(CHEST_SIZE)));
-        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s chest size data.");
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
+        // Obtain chest trend info
+        String chestInfo = selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(CHEST_SIZE));
+
+        // Display
+        clientInfoPane.setText(chestInfo);
+
+        // Messages to show if data present or empty
+        if (chestInfo != null  && !chestInfo.trim().isEmpty()) {
+            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s chest size data.");
+        } else {
+            statusMessage.setText("No data found for " + selectedClient.getName() + "'s chest size.");
+        }
     }
 
-    /**
-     * assigns a value to the data variable, to be associated with future
-     * entries until user provides a new date
-     * @param event
-     */
+    /** Assigns a value to the data variable, to be associated with future
+      * entries until user provides a new date
+      * @param event Button click
+      */
     @FXML
     void assignDate(ActionEvent event) {
+
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
 
         // get the date input from the user
         String dateString = dateInput.getText();
@@ -302,53 +397,112 @@ public class MainController {
         // format the string as date
         DateTimeFormatter stringToDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yy");
 
-        // parse the formatted date into a LocalDate class
-        date = LocalDate.parse(dateString, stringToDateFormatter);
-
-        dateInput.clear();
-        statusMessage.setText("Date assigned to future entries.");
+        try {
+            // parse the formatted date into a LocalDate class
+            date = LocalDate.parse(dateString, stringToDateFormatter);
+            statusMessage.setText("Date assigned to future entries.");
+            dateInput.clear();
+        } catch ( Exception e ) {
+            // Show error message if date is invalid
+           statusMessage.setText("Date must be in the format DD/MM/YY");
+        }
     }
 
-    /**
-     * gets the selected client from the database
-     * @param event
+    /** Displays the selected client from the database
+     *
+     * @param event Button click
      */
     @FXML
     void selectExistingClient(ActionEvent event) {
+        // Check database for an existing client and assign it to selectedClient
         selectedClient = DataBase.getClient(existingClientName.getText());
-        selectedClientNameDisplay.setText("Entering / printing data for " + existingClientName.getText());
-        existingClientName.clear();
 
+        // Messages to display if client found or no client found
+        if (selectedClient != null) {
+            selectedClientNameDisplay.setText("Entering / printing data for " + existingClientName.getText());
+            statusMessage.setText("Now looking at " + existingClientName.getText() + "'s data.");
+            existingClientName.clear();
+        } else {
+            statusMessage.setText("No client with that name found.");
+        }
     }
 
-    /**
-     * prints the user's waist size to the info panel
+    /** Displays the client's waist size to the info panel
+     *
      * @param event Button click
      */
     @FXML
     void printWaist(ActionEvent event) {
-        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WAIST_SIZE)));
-        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s waist size data.");
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
+        // Obtain waist trend info
+        String waistInfo = selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WAIST_SIZE));
+
+        // Display
+        clientInfoPane.setText(waistInfo);
+
+        // Messages to show if data present or empty
+        if (waistInfo != null  && !waistInfo.trim().isEmpty()) {
+            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s waist size data.");
+        } else {
+            statusMessage.setText("No data found for " + selectedClient.getName() + "'s waist size.");
+        }
     }
 
+    /** Displays the client's predicted weekly caloric intake
+     *
+     * @param event Button click
+     */
     @FXML
     void printWeeklyCalIntake(ActionEvent event) {
-
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
     }
 
-    /**
-     * prints the user's weight to the info panel
+    /** Displays the client's weight to the info panel
+     *
      * @param event Button click
      */
     @FXML
     void printWeight(ActionEvent event) {
-        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WEIGHT)));
-        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s weight data.");
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
+        // Obtain weight info
+        String weightInfo = selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WEIGHT));
+
+        // Display
+        clientInfoPane.setText(weightInfo);
+
+        // Messages if data present or empty
+        if (weightInfo != null  && !weightInfo.trim().isEmpty()) {
+            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s weight data.");
+        } else {
+            statusMessage.setText("No data found for " + selectedClient.getName() + "'s weight.");
+        }
     }
 
+    /** Displays the client's predicted weight trend
+     *
+     * @param event Button click
+     */
     @FXML
     void printWeightTrend(ActionEvent event) {
-
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
     }
 
 }
