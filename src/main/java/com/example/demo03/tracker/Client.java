@@ -149,7 +149,7 @@ public final class Client {
             }
 
         } else {
-            sb.append("Not enough data available for " + name + ".");
+            sb.append("Not enough weight data to make a prediction.");
             return sb.toString();
         }
     }
