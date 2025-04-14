@@ -136,19 +136,49 @@ public class MainController {
 
     }
 
+    /** Adds a bicep size measurement to the client's data
+     *
+     * @param event Button click
+     */
     @FXML
     void addBicepsSize(ActionEvent event) {
+        float entry;
 
+        // checking user input
+        try {
+            entry = Float.parseFloat(bicepSizeInput.getText());
+            //add the entry to the clients waist size data
+            selectedClient.getMeasurement(MeasurementEnum.getEnumAt(BICEP_SIZE)).addEntry(date, entry);
+            statusMessage.setText("Bicep size added to database");
+            bicepSizeInput.clear();
+        } catch (NumberFormatException e) {
+            statusMessage.setText("Bicep size needs to be a number.");
+        }
     }
 
+    /** Adds a chest size measurement to the client's data
+     *
+     * @param event Button click
+     */
     @FXML
     void addChestSize(ActionEvent event) {
+        float entry;
 
+        // checking user input
+        try {
+            entry = Float.parseFloat(chestSizeInput.getText());
+            //add the entry to the clients waist size data
+            selectedClient.getMeasurement(MeasurementEnum.getEnumAt(CHEST_SIZE)).addEntry(date, entry);
+            statusMessage.setText("Chest size added to database");
+            chestSizeInput.clear();
+        } catch (NumberFormatException e) {
+            statusMessage.setText("Chest size needs to be a number.");
+        }
     }
 
     /**
      * Adds a waist size entry to the selected client's data
-     * @param event
+     * @param event Button click event
      */
     @FXML
     void addWaistSize(ActionEvent event) {
@@ -169,7 +199,7 @@ public class MainController {
 
     /**
      * Adds a weight entry to the selected client's data
-     * @param event
+     * @param event Button click event
      */
     @FXML
     void addWeight(ActionEvent event) {
@@ -197,7 +227,7 @@ public class MainController {
 
     /**
      * adds a new client to the database
-     * @param event
+     * @param event Button click
      */
     @FXML
     void addNewClient(ActionEvent event) {
@@ -218,6 +248,10 @@ public class MainController {
 
     }
 
+    /**
+     * Prints all the clients onto the info panel
+     * @param event Button click
+     */
     @FXML
     void printAllClients(ActionEvent event) {
         clientInfoPane.setText(DataBase.printAllClientNames());
@@ -229,9 +263,14 @@ public class MainController {
 
     }
 
+    /**
+     * prints the user's bicep size to the info panel
+     * @param event Button click
+     */
     @FXML
     void printBiceps(ActionEvent event) {
-
+        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(BICEP_SIZE)));
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s bicep size data.");
     }
 
     @FXML
@@ -239,9 +278,14 @@ public class MainController {
 
     }
 
+    /**
+     * prints the user's chest size to the info panel
+     * @param event Button click
+     */
     @FXML
     void printChest(ActionEvent event) {
-
+        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(CHEST_SIZE)));
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s chest size data.");
     }
 
     /**
@@ -277,9 +321,14 @@ public class MainController {
 
     }
 
+    /**
+     * prints the user's waist size to the info panel
+     * @param event Button click
+     */
     @FXML
     void printWaist(ActionEvent event) {
-
+        clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WAIST_SIZE)));
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s waist size data.");
     }
 
     @FXML
@@ -289,12 +338,12 @@ public class MainController {
 
     /**
      * prints the user's weight to the info panel
-     * @param event
+     * @param event Button click
      */
     @FXML
     void printWeight(ActionEvent event) {
         clientInfoPane.setText(selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(WEIGHT)));
-
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s weight data.");
     }
 
     @FXML
