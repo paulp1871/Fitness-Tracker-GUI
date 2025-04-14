@@ -112,7 +112,47 @@ public final class Client {
         } else {
             System.out.println("Not enough data available for " + name + ".");
         }
-   }
+    }
+
+    /** Same as getBMI but returns a string
+     *
+     * @return String
+     */
+    public String getBMIString() {
+        StringBuilder sb = new StringBuilder();
+
+        TreeMap <LocalDate, Float> weightEntries = getMeasurement(MeasurementEnum.WEIGHT).getEntries();
+
+        // for calculateBMIDifference to work as intended we need at one entry for height and weight
+        if (!weightEntries.isEmpty()) {
+
+            String[] BMIDifference = calculateBMIDifference(weightEntries, height);
+
+            // print the difference in BMI to the user
+            sb.append("Since " + BMIDifference[0] + ", " + name + "'s BMI has changed from " + BMIDifference[2] + " to " + BMIDifference[3] + ".\n");
+
+            // try to predict future BMI
+            float futureBMI = predictFutureBMI(weightEntries, height);
+
+            // get future date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+            LocalDate futureDate = (getMeasurement(MeasurementEnum.WEIGHT).getEntries().lastKey()).plusWeeks(1);
+
+            // only give prediction if enough data was found to make one
+            if (futureBMI != -1) {
+                // print prediction to user
+                sb.append("By " + futureDate + ", " + name + "'s BMI will be " + futureBMI + ".");
+                return sb.toString();
+            } else {
+                sb.append("Not enough weight data to make a prediction.");
+                return sb.toString();
+            }
+
+        } else {
+            sb.append("Not enough data available for " + name + ".");
+            return sb.toString();
+        }
+    }
 
     /**
      * getCurrentBMI calculates the user's BMI at a certain point given their height and weight.
