@@ -91,7 +91,7 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="date" mnemonicParsing="false" onAction="#assignDate" prefHeight="25.0" prefWidth="100.0" text="Date" wrapText="true" />
+                              <Button fx:id="dateAssign" mnemonicParsing="false" onAction="#assignDate" prefHeight="25.0" prefWidth="100.0" text="Date" wrapText="true" />
                               <TextField fx:id="dateInput" prefHeight="25.0" prefWidth="152.0" promptText="DD/MM/YYY" />
                            </children>
                         </HBox>
@@ -121,7 +121,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" prefWidth="100.0" text="Calorie intake" wrapText="true" />
+                              <Button fx:id="addCalIntake" mnemonicParsing="false" onAction="#addCalorieIntake" prefWidth="100.0" text="Calorie intake" wrapText="true" />
                               <TextField fx:id="calIntakeInput" prefHeight="25.0" prefWidth="152.0" promptText="(cals)" />
                            </children>
                         </HBox>

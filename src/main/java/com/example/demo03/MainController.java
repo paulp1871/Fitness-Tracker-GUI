@@ -47,6 +47,9 @@ public class MainController {
     private TextField dateInput;
 
     @FXML
+    private Button dateAssign;
+
+    @FXML
     private TextField weightInput;
 
     @FXML
@@ -78,6 +81,9 @@ public class MainController {
 
     @FXML
     private Button addWeight;
+
+    @FXML
+    private Button addCalIntake;
 
     @FXML
     private Button chestSize;
@@ -123,17 +129,17 @@ public class MainController {
 
     @FXML
     void About(ActionEvent event) {
-
+        //TODO:
     }
 
     @FXML
     void Load(ActionEvent event) {
-
+        //TODO:
     }
 
     @FXML
     void SaveAs(ActionEvent event) {
-
+        //TODO:
     }
 
     /** Adds a bicep size measurement to the client's data
@@ -159,6 +165,8 @@ public class MainController {
             bicepSizeInput.clear();
         } catch (NumberFormatException e) {
             statusMessage.setText("Bicep size needs to be a number.");
+        } catch (NullPointerException e) {
+            statusMessage.setText("Please enter date first.");
         }
     }
 
@@ -185,6 +193,8 @@ public class MainController {
             chestSizeInput.clear();
         } catch (NumberFormatException e) {
             statusMessage.setText("Chest size needs to be a number.");
+        } catch (NullPointerException e) {
+            statusMessage.setText("Please enter date first.");
         }
     }
 
@@ -211,9 +221,38 @@ public class MainController {
             waistSizeInput.clear();
         } catch (NumberFormatException e) {
             statusMessage.setText("Waist size needs to be a number.");
+        } catch (NullPointerException e) {
+            statusMessage.setText("Please enter date first.");
         }
     }
 
+    /** Adds calorie intake entry to selected client's data
+     *
+     * @param event Button click
+     */
+    @FXML
+    void addCalorieIntake(ActionEvent event) {
+        // Check client was selected
+        if (selectedClient == null) {
+            statusMessage.setText("No client selected. Please select a client first.");
+            return;
+        }
+
+        float entry;
+
+        // checking user input
+        try {
+            entry = Float.parseFloat(calIntakeInput.getText());
+            //add the entry to the clients waist size data
+            selectedClient.getMeasurement(MeasurementEnum.getEnumAt(CALORIE_INTAKE)).addEntry(date, entry);
+            statusMessage.setText("Total calorie count for the date added to database");
+            waistSizeInput.clear();
+        } catch (NumberFormatException e) {
+            statusMessage.setText("Calorie count needs to be a number.");
+        } catch (NullPointerException e) {
+            statusMessage.setText("Please enter date first.");
+        }
+    }
 
     /**
      * Adds a weight entry to the selected client's data
@@ -238,6 +277,8 @@ public class MainController {
             weightInput.clear();
         } catch (NumberFormatException e) {
             statusMessage.setText("Weight needs to be a number.");
+        } catch (NullPointerException e) {
+            statusMessage.setText("Please enter date first.");
         }
 
     }
@@ -349,7 +390,18 @@ public class MainController {
             return;
         }
 
+        // Obtain calorie intake info
+        String calorieInfo = selectedClient.printSpecificClientMeasurement(MeasurementEnum.getEnumAt(CALORIE_INTAKE));
 
+        // Display
+        clientInfoPane.setText(calorieInfo);
+
+        // Messages to show if data present or empty
+        if (calorieInfo != null  && !calorieInfo.trim().isEmpty()) {
+            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s calorie intake data.");
+        } else {
+            statusMessage.setText("No data found for " + selectedClient.getName() + "'s calorie intake.");
+        }
     }
 
     /** Displays the client's chest size to the info panel
@@ -453,7 +505,7 @@ public class MainController {
         }
     }
 
-    /** Displays the client's predicted weekly caloric intake
+    /** Displays the client's average weekly caloric intake
      *
      * @param event Button click
      */
@@ -463,6 +515,19 @@ public class MainController {
         if (selectedClient == null) {
             statusMessage.setText("No client selected. Please select a client first.");
             return;
+        }
+
+        // Obtain weekly caloric intake info
+        float weeklyCaloricIntake = selectedClient.getMeasurement(MeasurementEnum.CALORIES).calculateTrend();
+
+        // Messages to show if data present or empty.
+        if (weeklyCaloricIntake == -1) {
+            clientInfoPane.setText("Not enough data to calculate average calorie intake for this week.");
+            statusMessage.setText("No calorie data available for " + selectedClient.getName());
+        } else {
+            clientInfoPane.setText("Average calorie intake for " + selectedClient.getName() +
+                    " this week was " + weeklyCaloricIntake + " calories.");
+            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s weekly average calorie intake.");
         }
     }
 
