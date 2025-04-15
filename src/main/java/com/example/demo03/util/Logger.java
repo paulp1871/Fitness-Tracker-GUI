@@ -17,15 +17,14 @@ public class Logger {
      * Writes all data to a text file to save for later
      * @param db the ClientList containing all the data
      */
-    public static void saveData(HashMap<String, Client> db) {
+    public static void saveData(HashMap<String, Client> db, File f) {
         try {
 
             // initialize dateTimeFormatter for later use
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
 
             // create fileWriter
-            File f = new File("database.txt");
-            f.createNewFile(); // does nothing if file already exists
+            f.createNewFile(); // creates new file if not existing already
             FileWriter fw = new FileWriter(f);
             BufferedWriter w = new BufferedWriter(fw);
 

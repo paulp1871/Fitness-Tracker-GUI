@@ -2,6 +2,7 @@ package com.example.demo03.util;
 
 import com.example.demo03.tracker.Client;
 
+import java.io.File;
 import java.util.*;
 
 
@@ -89,10 +90,10 @@ public class DataBase {
     }
 
     /**
-     * writes save data to file
+     * writes save data to the given file
      */
-    public static void logSave() {
-        Logger.saveData(clientList);
+    public static void logSave(File f) {
+        Logger.saveData(clientList, f);
     }
 
     /**

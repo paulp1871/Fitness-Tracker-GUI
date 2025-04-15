@@ -1,5 +1,6 @@
 package com.example.demo03;
 
+import java.io.File;
 import java.time.LocalDate;
 
 import com.example.demo03.enums.MeasurementEnum;
@@ -103,7 +104,8 @@ public class Main{
             } else if (mainMenuChoice == LOAD_FROM_FILE) {
                 DataBase.loadSave();
             } else if (mainMenuChoice == SAVE_TO_FILE) {
-                DataBase.logSave();
+                File f = new File("save.txt");
+                DataBase.logSave(f);
             }
         } while (mainMenuChoice != EXIT_PROGRAM);
     }
