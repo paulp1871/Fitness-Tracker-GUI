@@ -102,7 +102,8 @@ public class Main{
             } else if (mainMenuChoice == COMPARE_ALL_CLIENTS_HEIGHT) {
                 DataBase.sortClientsByHeight();
             } else if (mainMenuChoice == LOAD_FROM_FILE) {
-                DataBase.loadSave();
+                File f = new File("save.txt");
+                DataBase.loadSave(f);
             } else if (mainMenuChoice == SAVE_TO_FILE) {
                 File f = new File("save.txt");
                 DataBase.logSave(f);

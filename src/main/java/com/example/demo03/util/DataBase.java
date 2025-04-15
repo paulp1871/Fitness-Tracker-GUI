@@ -77,8 +77,8 @@ public class DataBase {
     /**
      * Overwrites clientList with clientList read from savefile
      */
-    public static void loadSave() {
-        HashMap<String, Client> save = Reader.loadFile();
+    public static void loadSave(File f) {
+        HashMap<String, Client> save = Reader.loadFile(f);
         if (save != null) {
             clientList.clear(); // remove all entries
             for (String name : save.keySet()) {

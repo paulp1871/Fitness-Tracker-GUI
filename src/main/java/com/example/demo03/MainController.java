@@ -4,15 +4,15 @@ import com.example.demo03.enums.MeasurementEnum;
 import com.example.demo03.tracker.Client;
 import com.example.demo03.util.DataBase;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 public class MainController {
 
@@ -128,18 +128,50 @@ public class MainController {
     private Label statusMessage;
 
     @FXML
+    private MenuItem saveAsButton;
+
+    @FXML
+    private MenuItem openFileButton;
+
+    @FXML
     void About(ActionEvent event) {
         //TODO:
     }
 
     @FXML
     void Load(ActionEvent event) {
-        //TODO:
+        // create FileChooser
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select save file to open");
+
+        // set it to only open .txt files
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text file", "*.txt"));
+
+        // open up file choice window and save selected file as a variable
+        File file = fileChooser.showOpenDialog(openFileButton.getParentPopup().getScene().getWindow());
+
+        if (file != null) {
+            // call read function
+            DataBase.loadSave(file);
+        }
     }
 
     @FXML
     void SaveAs(ActionEvent event) {
-        //TODO:
+        // create FileChooser
+        FileChooser filechooser = new FileChooser();
+        filechooser.setTitle("Save to file");
+
+        // set it to only save to .txt files
+        filechooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text File", "*.txt"));
+
+        // open up the file choice window, centered on the main window, saving the selected save location to a variable
+        File selectedFile = filechooser.showSaveDialog(saveAsButton.getParentPopup().getScene().getWindow());
+
+        if (selectedFile != null) {
+            // call save function
+            DataBase.logSave(selectedFile);
+        }
     }
 
     /** Adds a bicep size measurement to the client's data

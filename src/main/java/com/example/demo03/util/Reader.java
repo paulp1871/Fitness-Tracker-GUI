@@ -16,7 +16,7 @@ public class Reader {
      * Reads database.txt to get all the client data
      * @return clientList
      */
-    public static HashMap<String, Client> loadFile() {
+    public static HashMap<String, Client> loadFile(File f) {
 
         // initialize output of clientList
         HashMap<String, Client> cl = new HashMap<>();
@@ -24,7 +24,6 @@ public class Reader {
         try {
 
             // initialize fileReader
-            File f = new File("database.txt");
             if (!f.exists()) {
                 return null;
             }
