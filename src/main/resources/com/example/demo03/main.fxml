@@ -21,7 +21,7 @@
             <items>
               <MenuItem fx:id="openFileButton" mnemonicParsing="false" onAction="#Load" text="Open" />
                   <MenuItem fx:id="saveAsButton" mnemonicParsing="false" onAction="#SaveAs" text="Save As" />
-                  <MenuItem mnemonicParsing="false" onAction="#About" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

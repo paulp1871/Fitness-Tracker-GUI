@@ -3,13 +3,19 @@ package com.example.demo03;
 import com.example.demo03.enums.MeasurementEnum;
 import com.example.demo03.tracker.Client;
 import com.example.demo03.util.DataBase;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -134,8 +140,27 @@ public class MainController {
     private MenuItem openFileButton;
 
     @FXML
+    void close(ActionEvent event) {
+        Platform.exit();
+    }
+
+    @FXML
     void About(ActionEvent event) {
-        //TODO:
+        try {
+            // get about.fxml
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+
+            // create Stage
+            Stage popup = new Stage();
+            popup.initModality(Modality.APPLICATION_MODAL);
+            popup.setTitle("About FITNESS TRACKER");
+            popup.setResizable(false);
+            popup.setScene(new Scene(fxmlLoader.load()));
+            popup.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
