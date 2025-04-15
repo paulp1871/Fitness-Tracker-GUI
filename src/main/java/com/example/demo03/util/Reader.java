@@ -14,6 +14,7 @@ public class Reader {
 
     /**
      * Reads database.txt to get all the client data
+     * @author Abdullah Kabbani (T03 Winter 2025)
      * @return clientList
      */
     public static HashMap<String, Client> loadFile(File f) {

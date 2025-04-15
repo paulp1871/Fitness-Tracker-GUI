@@ -15,6 +15,7 @@ public class Logger {
 
     /**
      * Writes all data to a text file to save for later
+     * @author Abdullah Kabbani (T03 Winter 2025)
      * @param db the ClientList containing all the data
      */
     public static void saveData(HashMap<String, Client> db, File f) {

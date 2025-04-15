@@ -22,6 +22,14 @@ import java.util.HashMap;
 
 public class MainController {
 
+    /**
+     * MainController adds functionality to the GUI
+     *
+     * created by Paul Pham, Vini de Melo, Abdullah Kabbani
+     * Demo presented at T15 for April 15, 2025
+     */
+
+
     // constants to refer to trackedData elements in a clearer format
     public static final int WEIGHT = 0;
     public static final int BICEP_SIZE = 1;
@@ -139,11 +147,18 @@ public class MainController {
     @FXML
     private MenuItem openFileButton;
 
+    /**
+     * closes the program
+     */
     @FXML
     void close(ActionEvent event) {
         Platform.exit();
     }
 
+    /**
+     * opens up the about window as a pop-up
+     * while the about window is up, the user cannot interact with the main menu until the about window is closed.
+     */
     @FXML
     void About(ActionEvent event) {
         try {
@@ -163,6 +178,10 @@ public class MainController {
         }
     }
 
+    /**
+     * Opens up a file choice dialogue, showing only text files.
+     * The chosen file is then read to load the database (assuming the file is in the proper format)
+     */
     @FXML
     void Load(ActionEvent event) {
         // create FileChooser
@@ -181,6 +200,10 @@ public class MainController {
         }
     }
 
+    /**
+     * opens up a file choice dialog so the user can choose where to save their file
+     * a text file with a user-specified name is created at the user-specified location
+     */
     @FXML
     void SaveAs(ActionEvent event) {
         // create FileChooser
