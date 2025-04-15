@@ -197,6 +197,7 @@ public class MainController {
         if (file != null) {
             // call read function
             DataBase.loadSave(file);
+            statusMessage.setText("Loaded data from " + file.getName());
         }
     }
 
@@ -219,6 +220,7 @@ public class MainController {
         if (selectedFile != null) {
             // call save function
             DataBase.logSave(selectedFile);
+            statusMessage.setText("Data saved to " + selectedFile.getName());
         }
     }
 
@@ -433,12 +435,10 @@ public class MainController {
         // Obtain BMI trend info
         String bmiInfo = selectedClient.getBMIString();
 
-        if (bmiInfo.contains("Not enough weight data to make a prediction.")) {
-            statusMessage.setText("Not enough weight data to make a prediction.");
-        } else {
-            statusMessage.setText("Now viewing " + selectedClient.getName() + "'s BMI trend.");
-            clientInfoPane.setText(bmiInfo);
-        }
+        // display BMI trend info
+        statusMessage.setText("Now viewing " + selectedClient.getName() + "'s BMI trend.");
+        clientInfoPane.setText(bmiInfo);
+
     }
 
     /** Displays the client's bicep size to the info panel
@@ -665,7 +665,7 @@ public class MainController {
 
         // Messages to show if data present or empty.
         if (weightTrendInfo == -1) {
-            statusMessage.setText("Not enough data to calculate predicted weight in a month.");
+            statusMessage.setText("Need at least two weight entries, one week apart in date, to get trend.");
         } else {
             clientInfoPane.setText(selectedClient.getName() + "'s predicted weight in a month is " + weightTrendInfo + " kg.");
             statusMessage.setText("Now viewing " + selectedClient.getName() + "'s predicted weight in a month.");
