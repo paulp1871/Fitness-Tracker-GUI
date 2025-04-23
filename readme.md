@@ -17,8 +17,11 @@ Some key functionalities:
 
 ## How to run it
 Download the JavaFX SDK from Gluon.
-Then go to myprojectname\target\classes folder and run the command java --module-path "sdk location*" --add-modules
+Then go to myprojectname\target\classes folder and run the command: java --module-path "sdk location*" --add-modules
 javafx.controls,javafx.fxml com.example.demo03.MainGUI
+
+Or if running the jar file, run the command: java --module-path "sdk location*" --add-modules
+javafx.controls,javafx.fxml -jar demo03.jar
 
 *SDK location is the folder where you put the sdk files, like "C:\Program Files\Java\javafx-sdk-23.0.2\lib" for example.
 
