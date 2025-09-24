@@ -6,10 +6,10 @@ Vini de Melo\
 Paul Pham\
 Abdullah Kabbani
 
-## What is does
-This fitness tracker GUI was a group project for my CPSC 233 class at the University of Calgary. This program tracks body measurements over time. It is primarily intended for personal trainers who have multiple clients whose progress needs to be recorded. 
+## About
+This was a group project for my CPSC 233 class at the University of Calgary. This program tracks body measurements over time. It is primarily intended for personal trainers who have multiple clients whose progress needs to be recorded. 
 
-# Some key functionalities:
+## Some key functionalities:
 1. Printing the name of registered clients
 2. Comparing all clients by height
 3. Adding / printing data such as Weight, Biceps size, Waist size, Chest size and Calorie intake for a given client.
