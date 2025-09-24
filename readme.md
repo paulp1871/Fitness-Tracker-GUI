@@ -4,7 +4,7 @@
 
 Vini de Melo\
 Paul Pham\
-Abdullah Kabani\
+Abdullah Kabbani
 
 ## What is does
 This fitness tracker GUI was a group project for my CPSC 233 class at the University of Calgary. This program tracks body measurements over time. It is primarily intended for personal trainers who have multiple clients whose progress needs to be recorded. 
