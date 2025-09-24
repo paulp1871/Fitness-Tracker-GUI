@@ -1,32 +1,35 @@
-# Information
+# Fitness Tracker (CPSC 233 Group Project)
 
 ## Authors
-
-Vini de Melo\
-Paul Pham\
-Abdullah Kabbani
+- Vini de Melo
+- Paul Pham
+- Abdullah Kabbani
 
 ## About
-This was a group project for my CPSC 233 class at the University of Calgary. This program tracks body measurements over time. It is primarily intended for personal trainers who have multiple clients whose progress needs to be recorded. 
+This is a group project for the course CPSC 233 at the University of Calgary. The program tracks client body measurements over time. It is intended for personal trainers who manage multiple clients and need to record progress.
 
-## Some key functionalities:
-1. Printing the name of registered clients
-2. Comparing all clients by height
-3. Adding / printing data such as Weight, Biceps size, Waist size, Chest size and Calorie intake for a given client.
-4. Calculating weight and BMI trend, as well as weekly calorie intake.
+## Key Features
+1. List registered clients
+2. Compare all clients by height
+3. Add / print data for a selected client: weight, biceps size, waist size, chest size, and calorie intake
+4. Calculate weight and BMI trend, and weekly calorie intake
 
-## How to run it
-Download the JavaFX SDK from Gluon.
-Then go to myprojectname\target\classes folder and run the command: java --module-path "sdk location*" --add-modules
-javafx.controls,javafx.fxml com.example.demo03.MainGUI
+## How to Run
+Install the JavaFX SDK from Gluon, then use one of the following:
 
-Or if running the jar file, run the command: java --module-path "sdk location*" --add-modules
-javafx.controls,javafx.fxml -jar demo03.jar
+Option A — from compiled classes
+cd <project-root>/target/classes
+java --module-path "<PATH_TO_FX>\lib" --add-modules javafx.controls,javafx.fxml com.example.demo03.MainGUI
 
-*SDK location is the folder where you put the sdk files, like "C:\Program Files\Java\javafx-sdk-23.0.2\lib" for example.
+Option B — from the JAR
+java --module-path "<PATH_TO_FX>\lib" --add-modules javafx.controls,javafx.fxml -jar demo03.jar
 
-## How to interact with it
-1. Provide a name and height before adding a new client
-2. Once clients are added, you can use the options "print client list" and "compare clients by height"
-3. To add or print data of a a client that has already been added, please provide a name and click "select client" first.
-4. To add new entries to a client's data set, please provide a date first, then the entry values.
+<PATH_TO_FX> is the folder where you installed the JavaFX SDK, for example:
+"C:\Program Files\Java\javafx-sdk-23.0.2\lib"
+(Keep the path in quotes if it contains spaces.)
+
+## How to Use
+1. Provide a name and height to add a new client.
+2. Use "Print client list" and "Compare clients by height" after clients are added.
+3. To add or print data for an existing client, enter the name and click "Select client" first.
+4. When adding entries for a selected client, provide the date first, then the entry values (weight, biceps, waist, chest, calorie intake).
