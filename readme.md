@@ -4,12 +4,12 @@
 
 Vini de Melo\
 Paul Pham\
-Abdullah Kabani
+Abdullah Kabani\
 
 ## What is does
-This program tracks body measurements over time. It is primarily intended for personal trainers who have multiple clients whose progress needs to be recorded.
+This fitness tracker GUI was a group project for my CPSC 233 class at the University of Calgary. This program tracks body measurements over time. It is primarily intended for personal trainers who have multiple clients whose progress needs to be recorded. 
 
-Some key functionalities:
+# Some key functionalities:
 1. Printing the name of registered clients
 2. Comparing all clients by height
 3. Adding / printing data such as Weight, Biceps size, Waist size, Chest size and Calorie intake for a given client.
@@ -24,7 +24,6 @@ Or if running the jar file, run the command: java --module-path "sdk location*" 
 javafx.controls,javafx.fxml -jar demo03.jar
 
 *SDK location is the folder where you put the sdk files, like "C:\Program Files\Java\javafx-sdk-23.0.2\lib" for example.
-
 
 ## How to interact with it
 Instructions
