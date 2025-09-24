@@ -26,7 +26,7 @@ javafx.controls,javafx.fxml -jar demo03.jar
 *SDK location is the folder where you put the sdk files, like "C:\Program Files\Java\javafx-sdk-23.0.2\lib" for example.
 
 ## How to interact with it
-Instructions
+-Instructions
 1. Provide a name and height before adding a new client
 2. Once clients are added, you can use the options "print client list" and "compare clients by height"
 3. To add or print data of a a client that has already been added, please provide a name and click "select client" first.
